@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+import { Joke } from '../joke';
+import { JokeService } from '../joke.service';
 
 @Component({
   selector: 'app-joke',
@@ -7,13 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JokeComponent implements OnInit {
 
-  joke: Joke = {
-    value: 'lol'
-  };
+  @Input() joke: Joke;
 
-  constructor() { }
+  constructor(private jokeService: JokeService) { }
 
   ngOnInit() {
+    this.joke = new Joke();
+    this.joke.value = "";
+    this.jokeService.getRandomJoke().then(joke => this.joke = joke);
+  }
+
+  refresh(){
+    this.jokeService.getRandomJoke().then(joke => this.joke = joke);
   }
 
 }
