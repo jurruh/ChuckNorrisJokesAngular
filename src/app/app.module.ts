@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { JokeComponent } from './joke/joke.component';
 import { JokeService } from './joke.service';
 
+import { MaterialModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +17,8 @@ import { JokeService } from './joke.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MaterialModule
   ],
   providers: [JokeService],
   bootstrap: [AppComponent]
